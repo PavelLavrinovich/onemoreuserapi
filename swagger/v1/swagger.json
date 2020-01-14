@@ -119,6 +119,139 @@
           }
         }
       }
+    },
+    "/users/:id": {
+      "get": {
+        "summary": "Show user",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "X_REQUESTED_WITH",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Should be equal XMLHttpRequest"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Id of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user",
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "email": "test@email.com",
+                "name": null,
+                "phone": null,
+                "role_id": 4,
+                "created_at": "2020-01-14T13:02:44.736Z",
+                "updated_at": "2020-01-14T13:02:44.736Z"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "X_REQUESTED_WITH",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Should be equal XMLHttpRequest"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Id of the user"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "user_extension_fields_attributes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "_destroy": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "phone"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create a user",
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "email": "one@more.com",
+                "name": "One More",
+                "phone": "1234567890",
+                "role_id": 4,
+                "created_at": "2020-01-14T13:56:52.580Z",
+                "updated_at": "2020-01-14T13:56:52.580Z"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
