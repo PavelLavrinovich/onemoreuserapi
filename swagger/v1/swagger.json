@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "List users",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "X_REQUESTED_WITH",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Should be equal XMLHttpRequest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all users",
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "email": "test@email.com",
+                  "name": null,
+                  "phone": null,
+                  "role_id": 4,
+                  "created_at": "2020-01-14T13:02:44.736Z",
+                  "updated_at": "2020-01-14T13:02:44.736Z"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create user",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "X_REQUESTED_WITH",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Should be equal XMLHttpRequest"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "user_extension_fields_attributes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "phone"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "create a user",
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "email": "one@more.com",
+                "name": "One More",
+                "phone": "1234567890",
+                "role_id": 4,
+                "created_at": "2020-01-14T13:56:52.580Z",
+                "updated_at": "2020-01-14T13:56:52.580Z"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

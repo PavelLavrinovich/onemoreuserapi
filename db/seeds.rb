@@ -1,0 +1,7 @@
+Role.create(name: 'Администратор')
+Role.create(name: 'Модератор')
+Role.create(name: 'Исполнитель')
+advertiser_role = Role.create(name: 'Рекламодатель')
+user = User.create(email: 'test@email.com', role: advertiser_role)
+user.user_extension_fields.create(name: 'Должность', value: 'Главный рекламодатель')
+user.user_extension_fields.create(name: 'Название организации', value: 'Рога и Копыта')
